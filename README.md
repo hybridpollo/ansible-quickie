@@ -3,8 +3,8 @@
 Ansible role to introduce beginners examples.
 =================
 
-This role provides a new ansible user with a small set of examples on getting started with ansible
-and its capabilities. 
+This role provides a new ansible user with a small set of examples on getting 
+started with ansible and its capabilities. 
 
 Refer to the Ansible Getting Started guide for further documentation: 
 
@@ -15,7 +15,9 @@ Requirements
  - SSH access on target hosts.  These examples utilize CentOS as the target hosts.
  - Internet access on the target hosts.  This is mainly to test/install updates
 
-You will need to have internet access on the target server in order to be able to get and install the required packages. 
+*This role contains two playbooks, start-lab.yml and stop-lab.yml. I developed 
+this role on my workstation which contains three CentOS7 kvm/libvirt hosts. 
+this is optional and added for convenience reasons.* 
 
 Dependencies
 ------------
