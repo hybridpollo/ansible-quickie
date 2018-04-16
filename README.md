@@ -1,36 +1,27 @@
-# gitlab-centos
+# ansible-quickie
 
-GitLab CE Install
+Ansible role to introduce beginners examples.
 =================
 
-This role install GitLab CE on a CentOS/RHEL 7 server. 
+This role provides a new ansible user with a small set of examples on getting started with ansible
+and its capabilities. 
+
+Refer to the Ansible Getting Started guide for further documentation: 
+
+http://docs.ansible.com/ansible/2.5/user_guide/intro_getting_started.html
 
 Requirements
 ------------
+ - SSH access on target hosts.  These examples utilize CentOS as the target hosts.
+ - Internet access on the target hosts.  This is mainly to test/install updates
 
 You will need to have internet access on the target server in order to be able to get and install the required packages. 
 
 Dependencies
 ------------
 
-There is no role dependency for this role.
+There is no role dependencies for this role.
 
-Host File
-----------
-
-The host file for this role is hosts.target and the format is:
-
-[gitlab-server]
-IP FOR GITLAB SERVER
-
-How to run the playbook
-------------------------
-
-**  Change the host target IP on the hosts.target inventory file to point to the server that you want to deploy.
-
-** Run the playbook
-
-ansible-playbook -i hosts.target gitlab-ce.yml
 
 License
 -------
@@ -39,6 +30,4 @@ Apache
 
 Author Information
 ------------------
-Alberto Rivera Laporte <hybridpollo@gmail.com> and modified from 
-original role by juliovp01 https://galaxy.ansible.com/juliovp01/gitlab-centos/
-
+Alberto Rivera Laporte <hybridpollo@gmail.com> 
