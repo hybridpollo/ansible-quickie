@@ -1,0 +1,36 @@
+---
+- hosts: kvmsrv
+  become: true
+  vars_files:
+    - vars/main.yml
+
+  tasks: 
+     - name: Register virsh domain status
+       shell: 
+          virsh domstate '{{ item }}'
+       with_items:
+          - '{{ vmlist }}'
+       register: vm_state
+       tags:
+          - vmstatus
+          - vmstart 
+    
+     - name: Get state 
+       debug:
+          msg: 
+             - 'Instance: {{ item.item }}'
+             - 'Status: {{ item.stdout }}'
+       with_items:
+            -  '{{ vm_state.results }}'
+       tags:
+          - vmstatus
+       
+     - name: Start kvm lab domains 
+       virt: 
+          name: '{{ item.item }}' 
+          state: running
+       when: item.stdout != "running"
+       with_items:
+          - '{{ vm_state.results }}'
+       tags:
+          - vmstart 

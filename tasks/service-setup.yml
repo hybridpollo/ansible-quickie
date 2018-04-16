@@ -1,0 +1,26 @@
+---
+- name: Ensure ntp package is absent
+  package:
+     name: ntp
+     state: absent
+
+- name: Ensure chrony package is installed
+  package: 
+     name: chrony
+     state: present 
+
+- name: Ensure chrony package enabled
+  service: 
+     name: chronyd
+     state: started
+     enabled: true 
+   
+- name: Place chrony config files in place  
+  template:
+     src: templates/chrony_server.j2
+     dest: /etc/chrony.conf
+     owner: root
+     group: root
+     mode: 0440
+  notify: 
+     - restart_chrony 

@@ -1,0 +1,20 @@
+---
+- hosts: kvmsrv
+  become: true
+  tasks: 
+     - name: Register|get kvm domain status
+       shell: 
+          virsh domstate '{{ item }}'
+       with_items:
+          - c7-ans-test-1
+          - c7-ans-test-2
+          - c7-ans-test-3
+       register: vm_state
+       
+     - name: Stop kvm domains 
+       virt: 
+          name: '{{ item.item }}' 
+          state: shutdown
+       when: item.stdout == "running"
+       with_items:
+          - '{{ vm_state.results }}'

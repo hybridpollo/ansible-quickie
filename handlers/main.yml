@@ -1,0 +1,7 @@
+---
+# handlers file for ansible-quickie
+- name: restart_chrony
+  service:
+     name: chronyd
+     state: restarted 
+     enabled: true

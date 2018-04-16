@@ -1,0 +1,50 @@
+---
+   - name: Setup hostname
+     hostname: 
+        name: '{{ inventory_hostname }}.{{ domain }}'
+     tags:
+        - setname 
+
+   - name: Ensure base groups exists
+     group: 
+        name: '{{ item.group_name }}'
+        gid: '{{ item.gid }}'
+        state: present
+     with_items:
+        - '{{ grouplist }}'
+     tags:
+        - setgroup
+        
+   - name: Ensure base users exist
+     user:
+        name: '{{ item.user_name }}' 
+        uid: '{{ item.uid }}'
+        shell: /bin/bash
+        state: present 
+        groups: '{{ item.uid }}, {{ sudo_group }}'
+        append: yes 
+     with_items:
+        - '{{ userlist }}'
+     tags:
+        - setuser
+
+   - name: Ensure /etc/sudoers.d directory 
+     file: 
+        path: /etc/sudoers.d
+        state: directory
+        owner: root
+        group: root
+        mode: 0750
+     tags:
+        - setsudo
+
+   - name: Ensure sudoers file 
+     template: 
+        src: templates/89-sudo-users.j2
+        dest: /etc/sudoers.d/89-sudo-users
+        owner: root
+        group: root
+        mode: 0440
+     tags:
+        - setsudo
+

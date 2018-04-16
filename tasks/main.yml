@@ -1,0 +1,6 @@
+---
+# tasks file for ansible-quickie
+#
+- include: base-host-setup.yml
+- include: base-software-setup.yml
+- include: service-setup.yml

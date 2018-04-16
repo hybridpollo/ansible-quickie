@@ -1,0 +1,24 @@
+---
+# vars file for ansible-quickie
+#
+domain: asm.local
+sudo_group: sudo
+
+vmlist:
+   - c7-ans-test-1
+   - c7-ans-test-2
+   - c7-ans-test-3
+
+userlist:
+   - { user_name: arlaporte, uid: 1001 }  
+   - { user_name: nolan, uid: 1003 }      
+
+grouplist:
+   - { group_name: arlaporte, gid: 1001 }  
+   - { group_name: nolan, gid: 1003 }      
+   - { group_name: sudo, gid: 27 }         
+
+time_server:
+   - pool.ntp.org
+   - 1.fedora.pool.ntp.org
+   - 1.centos.pool.ntp.org

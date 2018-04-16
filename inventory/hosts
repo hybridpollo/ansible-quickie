@@ -1,0 +1,8 @@
+[all_vms]
+c7-anstest-a ansible_host=172.25.10.192 ansible_user=root 
+c7-anstest-b ansible_host=172.25.10.225 ansible_user=root
+c7-anstest-c ansible_host=172.25.10.155 ansible_user=root
+
+[kvmsrv]
+valencia.local	ansible_connection=local 
+
